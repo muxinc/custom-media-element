@@ -1,0 +1,59 @@
+{
+  "name": "custom-media-element",
+  "version": "0.1.0",
+  "description": "A custom element for extending the native media elements (<audio> or <video>)",
+  "type": "module",
+  "main": "custom-media-element.js",
+  "types": "custom-media-element.d.ts",
+  "files": [
+    "custom-media-element.d.ts"
+  ],
+  "repository": "muxinc/custom-media-element",
+  "author": "@muxinc",
+  "license": "MIT",
+  "homepage": "https://github.com/luwes/custom-media-element#readme",
+  "bugs": {
+    "url": "https://github.com/luwes/custom-media-element/issues"
+  },
+  "scripts": {
+    "lint": "npx eslint *.js",
+    "pretest": "esbuild custom-media-element.js --target=es2019 --bundle --outdir=dist",
+    "test": "web-test-runner --config test/web-test-runner.config.js",
+    "dev": "esbuild custom-media-element.js --bundle --outdir=dist --servedir=.",
+    "build": "rm -rf dist && esbuild custom-media-element.js --target=es2019 --format=esm --bundle --outdir=dist",
+    "publish-release": "./scripts/publish.sh"
+  },
+  "devDependencies": {
+    "@open-wc/testing": "^3.1.8",
+    "@web/test-runner": "^0.16.1",
+    "esbuild": "^0.17.19"
+  },
+  "eslintConfig": {
+    "root": true,
+    "globals": {
+      "globalThis": "writable"
+    },
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true,
+      "mocha": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2022,
+      "sourceType": "module"
+    }
+  },
+  "keywords": [
+    "custom",
+    "element",
+    "video",
+    "audio",
+    "media",
+    "web",
+    "component"
+  ]
+}
