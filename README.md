@@ -7,7 +7,41 @@ A custom element for extending the native media elements (`<audio>` or `<video>`
 
 ## Usage
 
+```js
+import { CustomVideoElement } from 'custom-media-element';
 
+class MyCustomVideoElement extends globalThis.CustomVideoElement {
+  constructor() {
+    super();
+  }
+
+  // Override the play method.
+  play() {
+    return super.play()
+  }
+
+  // Override the src getter & setter.
+  get src() {
+    return super.src;
+  }
+
+  set src(src) {
+    super.src = src;
+  }
+}
+
+if (globalThis.customElements && !globalThis.customElements.get('my-custom-video')) {
+  globalThis.customElements.define('my-custom-video', MyCustomVideoElement);
+}
+
+export default MyCustomVideoElement;
+```
+
+```html
+<my-custom-video
+  src="https://stream.mux.com/A3VXy02VoUinw01pwyomEO3bHnG4P32xzV7u1j1FSzjNg/low.mp4"
+></my-custom-video>
+```
 
 
 ## Related
