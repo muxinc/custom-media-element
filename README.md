@@ -10,7 +10,7 @@ A custom element for extending the native media elements (`<audio>` or `<video>`
 ```js
 import { CustomVideoElement } from 'custom-media-element';
 
-class MyCustomVideoElement extends globalThis.CustomVideoElement {
+class MyCustomVideoElement extends CustomVideoElement {
   constructor() {
     super();
   }

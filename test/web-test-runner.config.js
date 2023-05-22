@@ -14,7 +14,6 @@ export default {
             <custom-video
               id="customVideo"
               muted
-              autoplay
               src="http://stream.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/low.mp4"
             ></custom-video>
           </body>
@@ -33,7 +32,6 @@ export default {
             <custom-video
               id="customVideo"
               muted
-              autoplay
               src="http://stream.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/low.mp4"
             ></custom-video>
           </body>
