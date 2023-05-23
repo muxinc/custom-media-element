@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/muxinc/custom-media-element/compare/v0.1.2...v0.1.3) (2023-05-23)
+
+
+### Bug Fixes
+
+* export template, fix types ([f028167](https://github.com/muxinc/custom-media-element/commit/f028167bae3a1cfef4352320a57a3d61b8019517))
+
+
+
 ## [0.1.2](https://github.com/muxinc/custom-media-element/compare/v0.1.1...v0.1.2) (2023-05-23)
 
 
