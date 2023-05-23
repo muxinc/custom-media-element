@@ -1,3 +1,12 @@
+## [0.1.4](https://github.com/muxinc/custom-media-element/compare/v0.1.3...v0.1.4) (2023-05-23)
+
+
+### Bug Fixes
+
+* types ([fa0ff1e](https://github.com/muxinc/custom-media-element/commit/fa0ff1e807bed9de948b8084c98a0313f5abc5c4))
+
+
+
 ## [0.1.3](https://github.com/muxinc/custom-media-element/compare/v0.1.2...v0.1.3) (2023-05-23)
 
 
