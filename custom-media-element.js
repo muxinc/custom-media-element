@@ -9,7 +9,7 @@
 
 // The onevent like props are weirdly set on the HTMLElement prototype with other
 // generic events making it impossible to pick these specific to HTMLMediaElement.
-const Events = [
+export const Events = [
   'abort',
   'canplay',
   'canplaythrough',
