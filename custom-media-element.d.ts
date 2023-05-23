@@ -5,8 +5,6 @@ export const Events: string[];
 
 export const template: HTMLTemplateElement;
 
-export function CustomMediaMixin<TBase extends Constructor>(Base: TBase): any;
-
 export class CustomAudioElement extends HTMLAudioElement implements HTMLAudioElement {
   static readonly observedAttributes: string[];
   static Events: string[];
@@ -26,3 +24,10 @@ export class CustomVideoElement extends HTMLVideoElement implements HTMLVideoEle
   connectedCallback(): void;
   disconnectedCallback(): void;
 }
+
+export function CustomMediaMixin<TBase extends Constructor>(
+  Base: TBase,
+  options: { tag: string, is: string }
+):
+  | CustomVideoElement
+  | CustomAudioElement;
