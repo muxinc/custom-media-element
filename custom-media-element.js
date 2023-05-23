@@ -57,7 +57,7 @@ const styles = `
   }
 `;
 
-const template = globalThis.document?.createElement('template');
+export const template = globalThis.document?.createElement('template');
 if (template) {
   template.innerHTML = `
   <style>
