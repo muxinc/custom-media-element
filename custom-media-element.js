@@ -221,7 +221,7 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
     }
 
     get preload() {
-      return this.getAttribute('preload');
+      return this.getAttribute('preload') ?? this.nativeEl?.preload;
     }
 
     set preload(val) {
