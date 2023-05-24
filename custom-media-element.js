@@ -72,6 +72,7 @@ if (template) {
  */
 export const CustomMediaMixin = (superclass, { tag, is }) => {
 
+  // `is` makes it possible to extend a custom built-in. e.g. castable-video
   const nativeElTest = globalThis.document?.createElement(tag, { is });
   const nativeElProps = nativeElTest ? getNativeElProps(nativeElTest) : [];
 
