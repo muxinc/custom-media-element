@@ -286,15 +286,15 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
     #initNativeEl() {
       // If there is no nativeEl by now, create it.
       if (!this.nativeEl) {
-        // Neither Chrome or Firefox support setting the muted attribute
-        // after using document.createElement.
-        // Get around this by setting the muted property manually.
         const nativeEl = document.createElement(tag, { is });
-        nativeEl.muted = this.hasAttribute('muted');
         nativeEl.part = tag;
-
         this.shadowRoot.append(nativeEl);
       }
+
+      // Neither Chrome or Firefox support setting the muted attribute
+      // after using document.createElement.
+      // Get around this by setting the muted property manually.
+      this.nativeEl.muted = this.hasAttribute('muted');
     }
 
     attributeChangedCallback(attrName, oldValue, newValue) {
