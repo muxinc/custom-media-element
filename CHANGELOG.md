@@ -1,3 +1,12 @@
+## [0.1.5](https://github.com/muxinc/custom-media-element/compare/v0.1.4...v0.1.5) (2023-05-24)
+
+
+### Bug Fixes
+
+* Events override, type and SSR issues ([03c3cde](https://github.com/muxinc/custom-media-element/commit/03c3cde38b6fac56012bcf694aeb462ced79a298))
+
+
+
 ## [0.1.4](https://github.com/muxinc/custom-media-element/compare/v0.1.3...v0.1.4) (2023-05-23)
 
 
