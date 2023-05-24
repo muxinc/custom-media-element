@@ -72,8 +72,8 @@ if (template) {
  */
 export const CustomMediaMixin = (superclass, { tag, is }) => {
 
-  const nativeElTest = document.createElement(tag, { is });
-  const nativeElProps = getNativeElProps(nativeElTest);
+  const nativeElTest = globalThis.document?.createElement(tag, { is });
+  const nativeElProps = nativeElTest ? getNativeElProps(nativeElTest) : [];
 
   return class CustomMedia extends superclass {
     static Events = Events;
@@ -84,7 +84,8 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
       CustomMedia.#define();
 
       // Include any attributes from the custom built-in.
-      const natAttrs = Object.getPrototypeOf(nativeElTest).observedAttributes;
+      const natAttrs = nativeElTest &&
+        Object.getPrototypeOf(nativeElTest).observedAttributes;
 
       return [
         ...(natAttrs ?? []),
@@ -262,7 +263,7 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
 
       // The video events are dispatched on the CustomMediaElement instance.
       // This makes it possible to add event listeners before the element is upgraded.
-      for (let type of Events) {
+      for (let type of this.constructor.Events) {
         this.shadowRoot.addEventListener?.(type, (evt) => {
           if (evt.target !== this.nativeEl) return;
           this.dispatchEvent(new CustomEvent(evt.type, { detail: evt.detail }));

@@ -1,6 +1,4 @@
 
-type Constructor = new (...args: any[]) => {};
-
 export const Events: string[];
 
 export const template: HTMLTemplateElement;
@@ -25,9 +23,15 @@ export class CustomVideoElement extends HTMLVideoElement implements HTMLVideoEle
   disconnectedCallback(): void;
 }
 
-export function CustomMediaMixin<TBase extends Constructor>(
-  Base: TBase,
-  options: { tag: string, is: string }
-):
-  | CustomVideoElement
-  | CustomAudioElement;
+type CustomMediaElementConstructor<K> = {
+  readonly observedAttributes: string[];
+  Events: string[];
+  template: HTMLTemplateElement;
+  new(): K
+};
+
+export function CustomMediaMixin(Base: any, options: { tag: 'video', is: string }):
+  CustomMediaElementConstructor<CustomVideoElement>;
+
+export function CustomMediaMixin(Base: any, options: { tag: 'audio', is: string }):
+  CustomMediaElementConstructor<CustomAudioElement>;
