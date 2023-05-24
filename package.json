@@ -11,9 +11,9 @@
   "repository": "muxinc/custom-media-element",
   "author": "@muxinc",
   "license": "MIT",
-  "homepage": "https://github.com/luwes/custom-media-element#readme",
+  "homepage": "https://github.com/muxinc/custom-media-element#readme",
   "bugs": {
-    "url": "https://github.com/luwes/custom-media-element/issues"
+    "url": "https://github.com/muxinc/custom-media-element/issues"
   },
   "scripts": {
     "lint": "npx eslint *.js",
