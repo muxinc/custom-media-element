@@ -1,3 +1,12 @@
+## [0.1.9](https://github.com/muxinc/custom-media-element/compare/v0.1.8...v0.1.9) (2023-05-24)
+
+
+### Bug Fixes
+
+* native preload value bug ([d327cf3](https://github.com/muxinc/custom-media-element/commit/d327cf3584f1d49dbdec0d1d45bac7573345a70b))
+
+
+
 ## [0.1.8](https://github.com/muxinc/custom-media-element/compare/v0.1.7...v0.1.8) (2023-05-24)
 
 
