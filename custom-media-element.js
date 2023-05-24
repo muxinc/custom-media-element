@@ -88,7 +88,7 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
         Object.getPrototypeOf(nativeElTest).observedAttributes;
 
       return [
-        ...(natAttrs ?? []),
+        ...(natAttrs || []),
         'autopictureinpicture',
         'disablepictureinpicture',
         'disableremoteplayback',
@@ -291,6 +291,7 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
         // Get around this by setting the muted property manually.
         const nativeEl = document.createElement(tag, { is });
         nativeEl.muted = this.hasAttribute('muted');
+        nativeEl.part = tag;
 
         this.shadowRoot.append(nativeEl);
       }
