@@ -1,3 +1,12 @@
+## [0.1.6](https://github.com/muxinc/custom-media-element/compare/v0.1.5...v0.1.6) (2023-05-24)
+
+
+### Bug Fixes
+
+* add part with tag name by default ([567a822](https://github.com/muxinc/custom-media-element/commit/567a822f00ec9b5819a9fbc434fb1a3da7e90002))
+
+
+
 ## [0.1.5](https://github.com/muxinc/custom-media-element/compare/v0.1.4...v0.1.5) (2023-05-24)
 
 
