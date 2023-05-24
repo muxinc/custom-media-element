@@ -1,3 +1,12 @@
+## [0.1.7](https://github.com/muxinc/custom-media-element/compare/v0.1.6...v0.1.7) (2023-05-24)
+
+
+### Bug Fixes
+
+* muted issue ([f7d5efd](https://github.com/muxinc/custom-media-element/commit/f7d5efd323d417af2a72cde98737026b1f9cebd6))
+
+
+
 ## [0.1.6](https://github.com/muxinc/custom-media-element/compare/v0.1.5...v0.1.6) (2023-05-24)
 
 
