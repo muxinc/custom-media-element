@@ -85,11 +85,10 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
       CustomMedia.#define();
 
       // Include any attributes from the custom built-in.
-      const natAttrs = nativeElTest &&
-        Object.getPrototypeOf(nativeElTest).observedAttributes;
+      const natAttrs = nativeElTest?.constructor?.observedAttributes ?? [];
 
       return [
-        ...(natAttrs || []),
+        ...natAttrs,
         'autopictureinpicture',
         'disablepictureinpicture',
         'disableremoteplayback',
