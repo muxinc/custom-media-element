@@ -1,3 +1,17 @@
+# [0.2.0](https://github.com/muxinc/custom-media-element/compare/v0.1.9...v0.2.0) (2023-05-26)
+
+
+### Bug Fixes
+
+* custom built-in observedAttributes bug ([a485ec4](https://github.com/muxinc/custom-media-element/commit/a485ec4e5166085662731e208a9950bd9440fbaf))
+
+
+### Features
+
+* use seperate apter tpl for video and audio ([139ef83](https://github.com/muxinc/custom-media-element/commit/139ef8332396b94b3c54a5c81a8c9da725e93b57))
+
+
+
 ## [0.1.9](https://github.com/muxinc/custom-media-element/compare/v0.1.8...v0.1.9) (2023-05-24)
 
 
