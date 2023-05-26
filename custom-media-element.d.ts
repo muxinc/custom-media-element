@@ -1,7 +1,8 @@
 
 export const Events: string[];
 
-export const template: HTMLTemplateElement;
+export const audioTemplate: HTMLTemplateElement;
+export const videoTemplate: HTMLTemplateElement;
 
 export class CustomAudioElement extends HTMLAudioElement implements HTMLAudioElement {
   static readonly observedAttributes: string[];

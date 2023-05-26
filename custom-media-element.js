@@ -42,28 +42,52 @@ export const Events = [
   'webkitpresentationmodechanged',
 ];
 
-const styles = `
-  :host {
-    display: inline-block;
-    line-height: 0;
-  }
+export const audioTemplate = globalThis.document?.createElement('template');
 
-  video,
-  audio {
-    max-width: 100%;
-    max-height: 100%;
-    min-width: 100%;
-    min-height: 100%;
-  }
-`;
+if (audioTemplate) {
+  audioTemplate.innerHTML = /*html*/`
+    <style>
+      :host {
+        display: inline-block;
+        line-height: 0;
+      }
 
-export const template = globalThis.document?.createElement('template');
-if (template) {
-  template.innerHTML = `
-  <style>
-    ${styles}
-  </style>
-  <slot></slot>
+      audio {
+        max-width: 100%;
+        max-height: 100%;
+        min-width: 100%;
+        min-height: 100%;
+      }
+    </style>
+    <slot></slot>
+  `;
+}
+
+export const videoTemplate = globalThis.document?.createElement('template');
+
+if (videoTemplate) {
+  videoTemplate.innerHTML = /*html*/`
+    <style>
+      :host {
+        display: inline-block;
+        line-height: 0;
+      }
+
+      video {
+        max-width: 100%;
+        max-height: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: var(--media-object-fit, contain);
+        object-position: var(--media-object-position, 50% 50%);
+      }
+
+      video::-webkit-media-text-track-container {
+        transform: var(--media-webkit-text-track-transform);
+        transition: var(--media-webkit-text-track-transition);
+      }
+    </style>
+    <slot></slot>
   `;
 }
 
@@ -78,7 +102,7 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
 
   return class CustomMedia extends superclass {
     static Events = Events;
-    static template = template;
+    static template = tag.endsWith('audio') ? audioTemplate : videoTemplate;
     static #isDefined;
 
     static get observedAttributes() {
@@ -232,10 +256,21 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
       if (this.#isInit) return;
       this.#isInit = true;
 
-      this.#initNativeEl();
+      // If there is no nativeEl by now, create it.
+      if (!this.nativeEl) {
+        const nativeEl = document.createElement(tag, { is });
+        nativeEl.part = tag;
+        this.shadowRoot.append(nativeEl);
+      }
 
-      for (let prop of nativeElProps)
+      // Neither Chrome or Firefox support setting the muted attribute
+      // after using document.createElement.
+      // Get around this by setting the muted property manually.
+      this.nativeEl.muted = this.hasAttribute('muted');
+
+      for (let prop of nativeElProps) {
         this.#upgradeProperty(prop);
+      }
 
       // Keep some native child elements like track and source in sync.
       const childMap = new Map();
@@ -281,20 +316,6 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
         // Set the value again via the (prototype) setter on this class.
         this[prop] = value;
       }
-    }
-
-    #initNativeEl() {
-      // If there is no nativeEl by now, create it.
-      if (!this.nativeEl) {
-        const nativeEl = document.createElement(tag, { is });
-        nativeEl.part = tag;
-        this.shadowRoot.append(nativeEl);
-      }
-
-      // Neither Chrome or Firefox support setting the muted attribute
-      // after using document.createElement.
-      // Get around this by setting the muted property manually.
-      this.nativeEl.muted = this.hasAttribute('muted');
     }
 
     attributeChangedCallback(attrName, oldValue, newValue) {
