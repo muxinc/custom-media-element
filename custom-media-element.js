@@ -304,6 +304,13 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
           this.dispatchEvent(new CustomEvent(evt.type, { detail: evt.detail }));
         }, true);
       }
+
+      // Watch native controls attribute for change and update the custom element.
+      // A user can right click and choose to show and hide native controls
+      const observer = new MutationObserver(() => {
+        this.controls = this.nativeEl.controls;
+      });
+      observer.observe(this.nativeEl, { attributes: true, attributeFilter: ['controls'] });
     }
 
     #upgradeProperty(prop) {
