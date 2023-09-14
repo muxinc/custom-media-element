@@ -20,8 +20,7 @@
     "pretest": "esbuild custom-media-element.js --target=es2019 --bundle --outdir=dist",
     "test": "web-test-runner --config test/web-test-runner.config.js",
     "dev": "esbuild custom-media-element.js --bundle --outdir=dist --servedir=.",
-    "build": "rm -rf dist && esbuild custom-media-element.js --target=es2019 --format=esm --bundle --outdir=dist",
-    "publish-release": "./scripts/publish.sh"
+    "build": "rm -rf dist && esbuild custom-media-element.js --target=es2019 --format=esm --bundle --outdir=dist"
   },
   "devDependencies": {
     "@open-wc/testing": "^3.1.8",
