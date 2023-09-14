@@ -1,3 +1,12 @@
+# [1.0.0](https://github.com/muxinc/custom-media-element/compare/v0.2.0...v1.0.0) (2023-09-14)
+
+
+### Bug Fixes
+
+* simplify cd script ([#5](https://github.com/muxinc/custom-media-element/issues/5)) ([f15eacf](https://github.com/muxinc/custom-media-element/commit/f15eacfc0c2856e88015566a534294230410e110))
+
+
+
 # [0.2.0](https://github.com/muxinc/custom-media-element/compare/v0.1.9...v0.2.0) (2023-05-26)
 
 
