@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/muxinc/custom-media-element/compare/v1.0.0...v1.0.1) (2023-10-01)
+
+
+### Bug Fixes
+
+* prevent setting the same attribute values ([#6](https://github.com/muxinc/custom-media-element/issues/6)) ([dc0fb30](https://github.com/muxinc/custom-media-element/commit/dc0fb30b995af324dc0e9579fde8139bc79e1f4a))
+
+
+
 # [1.0.0](https://github.com/muxinc/custom-media-element/compare/v0.2.0...v1.0.0) (2023-09-14)
 
 
