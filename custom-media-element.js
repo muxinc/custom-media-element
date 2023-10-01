@@ -333,7 +333,9 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
       if (newValue === null) {
         this.nativeEl.removeAttribute?.(attrName);
       } else {
-        this.nativeEl.setAttribute?.(attrName, newValue);
+        if (newValue != this.nativeEl.getAttribute?.(attrName)) {
+          this.nativeEl.setAttribute?.(attrName, newValue);
+        }
       }
     }
 
