@@ -54,9 +54,7 @@ if (audioTemplate) {
 
       audio {
         max-width: 100%;
-        max-height: 100%;
         min-width: 100%;
-        min-height: 100%;
       }
     </style>
     <slot></slot>
@@ -75,9 +73,9 @@ if (videoTemplate) {
 
       video {
         max-width: 100%;
-        max-height: 100%;
         min-width: 100%;
-        min-height: 100%;
+        ${/* max-height: 100%; causes the custom element to collapse if its container has no height. */''}
+        ${/* min-height: 100%; causes a Safari glitch and expands the custom element height incorrectly. */''}
         object-fit: var(--media-object-fit, contain);
         object-position: var(--media-object-position, 50% 50%);
       }
@@ -333,7 +331,7 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
       if (newValue === null) {
         this.nativeEl.removeAttribute?.(attrName);
       } else {
-        if (newValue != this.nativeEl.getAttribute?.(attrName)) {
+        if (this.nativeEl.getAttribute?.(attrName) != newValue) {
           this.nativeEl.setAttribute?.(attrName, newValue);
         }
       }
