@@ -75,7 +75,9 @@ if (videoTemplate) {
         max-width: 100%;
         min-width: 100%;
         ${/* max-height: 100%; causes the custom element to collapse if its container has no height. */''}
-        ${/* min-height: 100%; causes a Safari glitch and expands the custom element height incorrectly. */''}
+        ${/* min-height: 100%; causes a Safari glitch making the video higher than 100% but it is needed
+          to expand the video element when no content is loaded yet. */''}
+        min-height: 100%;
         object-fit: var(--media-object-fit, contain);
         object-position: var(--media-object-position, 50% 50%);
       }
@@ -297,11 +299,13 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
       // The video events are dispatched on the CustomMediaElement instance.
       // This makes it possible to add event listeners before the element is upgraded.
       for (let type of this.constructor.Events) {
-        this.shadowRoot.addEventListener?.(type, (evt) => {
-          if (evt.target !== this.nativeEl) return;
-          this.dispatchEvent(new CustomEvent(evt.type, { detail: evt.detail }));
-        }, true);
+        this.shadowRoot.addEventListener?.(type, this, true);
       }
+    }
+
+    handleEvent(evt) {
+      if (evt.target !== this.nativeEl) return;
+      this.dispatchEvent(new CustomEvent(evt.type, { detail: evt.detail }));
     }
 
     #upgradeProperty(prop) {

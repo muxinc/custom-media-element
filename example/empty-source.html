@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<title>Custom Media Element</title>
+<meta name="viewport" content="width=device-width">
+<script type="module" src="./example.js"></script>
+
+<style>
+  body {
+    margin: 20px auto;
+    max-width: 800px;
+  }
+
+  .red-container {
+    background-color: red;
+  }
+
+  my-video,
+  video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+</style>
+
+<nav>
+  <ul>
+    <li><a href="./">Default</a></li>
+    <li><a href="./media-chrome.html">Media Chrome</a></li>
+    <li><a href="./aspect-ratio.html">Aspect-ratio</a></li>
+    <li><a href="./empty-source.html">Empty source</a></li>
+  </ul>
+</nav>
+
+<h1>&lt;my-video&gt; w/o source</h1>
+
+<div class="red-container">
+  <my-video
+    controls
+    crossorigin
+    muted
+  >
+    <track default label="English" kind="captions" srclang="en" src="./en-cc.vtt">
+    <track label="thumbnails" id="customTrack" default kind="metadata" src="https://image.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/storyboard.vtt">
+  </my-video>
+</div>
+
+<br>
+<h1>&lt;video&gt; w/o source</h1>
+
+<div class="red-container">
+  <video
+    controls
+    crossorigin
+    muted
+  >
+    <track default label="English" kind="captions" srclang="en" src="./en-cc.vtt">
+    <track label="thumbnails" id="customTrack" default kind="metadata" src="https://image.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/storyboard.vtt">
+  </video>
+</div>
+
+<br>
+<br>
