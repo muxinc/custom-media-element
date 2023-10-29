@@ -16,35 +16,16 @@
     "url": "https://github.com/muxinc/custom-media-element/issues"
   },
   "scripts": {
-    "lint": "npx eslint *.js",
+    "lint": "npx eslint *.js -c ./node_modules/wet-run/.eslintrc.json",
     "pretest": "esbuild custom-media-element.js --target=es2019 --bundle --outdir=dist",
     "test": "web-test-runner --config test/web-test-runner.config.js",
-    "dev": "esbuild custom-media-element.js --bundle --outdir=dist --servedir=.",
-    "build": "rm -rf dist && esbuild custom-media-element.js --target=es2019 --format=esm --bundle --outdir=dist"
+    "dev": "wet serve --redirect :examples/"
   },
   "devDependencies": {
     "@open-wc/testing": "^3.1.8",
     "@web/test-runner": "^0.16.1",
-    "esbuild": "^0.17.19"
-  },
-  "eslintConfig": {
-    "root": true,
-    "globals": {
-      "globalThis": "writable"
-    },
-    "env": {
-      "browser": true,
-      "es6": true,
-      "node": true,
-      "mocha": true
-    },
-    "extends": [
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2022,
-      "sourceType": "module"
-    }
+    "esbuild": "^0.17.19",
+    "wet-run": "^0.5.1"
   },
   "keywords": [
     "custom",
