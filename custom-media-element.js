@@ -48,15 +48,14 @@ if (audioTemplate) {
   audioTemplate.innerHTML = /*html*/`
     <style>
       :host {
-        display: inline-block;
+        display: inline-flex;
         line-height: 0;
+        flex-direction: column;
+        justify-content: end;
       }
 
       audio {
-        max-width: 100%;
-        max-height: 100%;
-        min-width: 100%;
-        min-height: 100%;
+        width: 100%;
       }
     </style>
     <slot></slot>
@@ -299,11 +298,13 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
       // The video events are dispatched on the CustomMediaElement instance.
       // This makes it possible to add event listeners before the element is upgraded.
       for (let type of this.constructor.Events) {
-        this.shadowRoot.addEventListener?.(type, (evt) => {
-          if (evt.target !== this.nativeEl) return;
-          this.dispatchEvent(new CustomEvent(evt.type, { detail: evt.detail }));
-        }, true);
+        this.shadowRoot.addEventListener?.(type, this, true);
       }
+    }
+
+    handleEvent(evt) {
+      if (evt.target !== this.nativeEl) return;
+      this.dispatchEvent(new CustomEvent(evt.type, { detail: evt.detail }));
     }
 
     #upgradeProperty(prop) {
@@ -333,7 +334,7 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
       if (newValue === null) {
         this.nativeEl.removeAttribute?.(attrName);
       } else {
-        if (newValue != this.nativeEl.getAttribute?.(attrName)) {
+        if (this.nativeEl.getAttribute?.(attrName) != newValue) {
           this.nativeEl.setAttribute?.(attrName, newValue);
         }
       }
