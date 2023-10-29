@@ -52,11 +52,18 @@ if (audioTemplate) {
         line-height: 0;
       }
 
+      #container {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+      }
+
       audio {
-        max-width: 100%;
-        min-width: 100%;
+        width: 100%;
       }
     </style>
+    <div id="container"></div>
     <slot></slot>
   `;
 }
