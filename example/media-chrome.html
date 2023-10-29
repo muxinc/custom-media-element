@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<title>Custom Media Element</title>
+<title>Custom Media Element - Media Chrome</title>
 <meta name="viewport" content="width=device-width">
 <script type="module" src="https://cdn.jsdelivr.net/npm/media-chrome@1/+esm"></script>
 <script type="module" src="./example.js"></script>
@@ -16,8 +16,9 @@
   }
 
   media-controller {
-    /* Remove this block to see how the custom video resizes in an inline-block container. */
     display: block;
+    /* Test in a non block container. */
+    /* display: inline-block; */
 
     /* Test with a fixed height to see overflow compared to native video. */
     /* height: 300px; */
@@ -30,6 +31,7 @@
     <li><a href="./media-chrome.html">Media Chrome</a></li>
     <li><a href="./aspect-ratio.html">Aspect-ratio</a></li>
     <li><a href="./empty-source.html">Empty source</a></li>
+    <li><a href="./progressive-enhancement.html">Progressive enhancement</a></li>
   </ul>
 </nav>
 
@@ -41,12 +43,11 @@
       slot="media"
       src="http://stream.mux.com/O6LdRc0112FEJXH00bGsN9Q31yu5EIVHTgjTKRkKtEq1k/medium.mp4"
       poster="https://image.mux.com/O6LdRc0112FEJXH00bGsN9Q31yu5EIVHTgjTKRkKtEq1k/thumbnail.webp"
-      controls
       crossorigin
       muted
     >
       <track default label="English" kind="captions" srclang="en" src="./en-cc.vtt">
-      <track label="thumbnails" id="customTrack" default kind="metadata" src="https://image.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/storyboard.vtt">
+      <track label="thumbnails" default kind="metadata" src="https://image.mux.com/O6LdRc0112FEJXH00bGsN9Q31yu5EIVHTgjTKRkKtEq1k/storyboard.vtt">
     </my-video>
     <media-control-bar>
       <media-play-button></media-play-button>
@@ -69,11 +70,10 @@
       src="http://stream.mux.com/O6LdRc0112FEJXH00bGsN9Q31yu5EIVHTgjTKRkKtEq1k/medium.mp4"
       poster="https://image.mux.com/O6LdRc0112FEJXH00bGsN9Q31yu5EIVHTgjTKRkKtEq1k/thumbnail.webp"
       crossorigin
-      controls
       muted
     >
       <track default label="English" kind="captions" srclang="en" src="./en-cc.vtt">
-      <track label="thumbnails" id="customTrack" default kind="metadata" src="https://image.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/storyboard.vtt">
+      <track label="thumbnails" default kind="metadata" src="https://image.mux.com/O6LdRc0112FEJXH00bGsN9Q31yu5EIVHTgjTKRkKtEq1k/storyboard.vtt">
     </video>
     <media-control-bar>
       <media-play-button></media-play-button>

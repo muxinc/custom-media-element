@@ -71,12 +71,16 @@ if (videoTemplate) {
         line-height: 0;
       }
 
+      #container {
+        min-height: 100%;
+      }
+
       video {
         max-width: 100%;
         min-width: 100%;
-        ${/* max-height: 100%; causes the custom element to collapse if its container has no height. */''}
-        ${/* min-height: 100%; causes a Safari glitch making the video higher than 100% but it is needed
-          to expand the video element when no content is loaded yet. */''}
+        max-height: 100%;
+        ${/* min-height: 100%; without a container causes a Safari glitch making the video higher
+          than 100% but it is needed to expand the video element when no content is loaded yet. */''}
         min-height: 100%;
         object-fit: var(--media-object-fit, contain);
         object-position: var(--media-object-position, 50% 50%);
@@ -87,6 +91,7 @@ if (videoTemplate) {
         transition: var(--media-webkit-text-track-transition);
       }
     </style>
+    <div id="container"></div>
     <slot></slot>
   `;
 }
@@ -260,7 +265,7 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
       if (!this.nativeEl) {
         const nativeEl = document.createElement(tag, { is });
         nativeEl.part = tag;
-        this.shadowRoot.append(nativeEl);
+        this.shadowRoot.querySelector('#container')?.append(nativeEl);
       }
 
       // Neither Chrome or Firefox support setting the muted attribute
