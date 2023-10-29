@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/muxinc/custom-media-element/compare/v1.0.1...v1.0.2) (2023-10-29)
+
+
+### Bug Fixes
+
+* sizing inconsistent compared to native video ([#7](https://github.com/muxinc/custom-media-element/issues/7)) ([0adc51a](https://github.com/muxinc/custom-media-element/commit/0adc51a841ed54a2c1dae16bf497f9e290d6aa3a))
+
+
+
 ## [1.0.1](https://github.com/muxinc/custom-media-element/compare/v1.0.0...v1.0.1) (2023-10-01)
 
 
