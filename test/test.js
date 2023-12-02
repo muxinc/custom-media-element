@@ -1,4 +1,4 @@
-import { fixture, assert } from '@open-wc/testing';
+import { test } from 'zora';
 import { CustomVideoElement } from '../custom-media-element.js';
 
 // The custom-video-element JS import is defined in web-test-runner.config.js
@@ -8,13 +8,13 @@ if (!globalThis.customElements.get('custom-video')) {
   globalThis.customElements.define('custom-video', CustomVideoElement);
 }
 
-it('is an instance of CustomVideoElement and HTMLElement', async function () {
-  const customVideo = await fixture(`<custom-video></custom-video>`);
-  assert(customVideo instanceof CustomVideoElement);
-  assert(customVideo instanceof HTMLElement);
+test('is an instance of CustomVideoElement and HTMLElement', async function (t) {
+  const customVideo = globalThis.customVideo;
+  t.ok(customVideo instanceof globalThis.customElements.get('custom-video'));
+  t.ok(customVideo instanceof HTMLElement);
 });
 
-it('uses attributes for getters if nativeEl is not ready yet', async function () {
+test('uses attributes for getters if nativeEl is not ready yet', async function (t) {
   class MyVideoElement extends CustomVideoElement {
     async load() {
       // This shows that the video like API can be delayed for players like
@@ -32,77 +32,75 @@ it('uses attributes for getters if nativeEl is not ready yet', async function ()
     `<my-video muted autoplay src="http://stream.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/low.mp4"></my-video>`
   );
 
-  assert.equal(customVideo.defaultMuted, true, 'defaultMuted is true');
-  assert.equal(customVideo.autoplay, true, 'autoplay is true');
-  assert.equal(
+  t.equal(customVideo.defaultMuted, true, 'defaultMuted is true');
+  t.equal(customVideo.autoplay, true, 'autoplay is true');
+  t.equal(
     customVideo.src,
     'http://stream.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/low.mp4'
   );
 });
 
-it('has default video reflecting props', async function () {
-  const customVideo = await fixture(
-    `<custom-video></custom-video>`
-  );
+test('has default video reflecting props', async function (t) {
+  const customVideo = globalThis.customVideo;
 
   customVideo.src = 'http://stream.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/low.mp4';
-  assert.equal(
+  t.equal(
     customVideo.getAttribute('src'),
     'http://stream.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/low.mp4',
     'has src attribute'
   );
-  assert.equal(
+  t.equal(
     customVideo.nativeEl.getAttribute('src'),
     'http://stream.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/low.mp4',
     'nativeEl has src attribute'
   );
 
   customVideo.preload = 'none';
-  assert.equal(customVideo.getAttribute('preload'), 'none', 'has preload attribute');
-  assert.equal(customVideo.nativeEl.getAttribute('preload'), 'none', 'nativeEl has preload attribute');
+  t.equal(customVideo.getAttribute('preload'), 'none', 'has preload attribute');
+  t.equal(customVideo.nativeEl.getAttribute('preload'), 'none', 'nativeEl has preload attribute');
 
   customVideo.defaultMuted = true;
-  assert(customVideo.hasAttribute('muted'), 'has muted attribute');
-  assert(customVideo.nativeEl.hasAttribute('muted'), 'nativeEl has muted attribute');
+  t.ok(customVideo.hasAttribute('muted'), 'has muted attribute');
+  t.ok(customVideo.nativeEl.hasAttribute('muted'), 'nativeEl has muted attribute');
 
   customVideo.loop = true;
-  assert(customVideo.hasAttribute('loop'), 'has loop attribute');
-  assert(customVideo.nativeEl.hasAttribute('loop'), 'nativeEl has loop attribute');
+  t.ok(customVideo.hasAttribute('loop'), 'has loop attribute');
+  t.ok(customVideo.nativeEl.hasAttribute('loop'), 'nativeEl has loop attribute');
 
   customVideo.autoplay = true;
-  assert(customVideo.hasAttribute('autoplay'), 'has autoplay attribute');
-  assert(customVideo.nativeEl.hasAttribute('autoplay'), 'nativeEl has autoplay attribute');
+  t.ok(customVideo.hasAttribute('autoplay'), 'has autoplay attribute');
+  t.ok(customVideo.nativeEl.hasAttribute('autoplay'), 'nativeEl has autoplay attribute');
 
   customVideo.controls = true;
-  assert(customVideo.hasAttribute('controls'), 'has controls attribute');
-  assert(customVideo.nativeEl.hasAttribute('controls'), 'nativeEl has controls attribute');
+  t.ok(customVideo.hasAttribute('controls'), 'has controls attribute');
+  t.ok(customVideo.nativeEl.hasAttribute('controls'), 'nativeEl has controls attribute');
 });
 
-it(`muted prop is set and doesn't reflect to muted attribute`, async function () {
+test(`muted prop is set and doesn't reflect to muted attribute`, async function (t) {
   const customVideo = await fixture(
     `<custom-video></custom-video>`
   );
 
   customVideo.muted = true;
 
-  assert(customVideo.muted, 'has muted true');
-  assert(!customVideo.hasAttribute('muted'), 'has no muted attribute');
+  t.ok(customVideo.muted, 'has muted true');
+  t.ok(!customVideo.hasAttribute('muted'), 'has no muted attribute');
 });
 
-it('has a working muted attribute', async function () {
+test('has a working muted attribute', async function (t) {
   if (document.readyState === 'loading') {
     await new Promise((resolve) => addEventListener('DOMContentLoaded', resolve));
   }
 
-  const customVideo = window.customVideo;
+  const customVideo = globalThis.customVideo;
 
-  assert(customVideo.hasAttribute('muted'), 'has muted attribute');
-  assert(customVideo.muted, 'has muted=true property');
-  assert(
+  t.ok(customVideo.hasAttribute('muted'), 'has muted attribute');
+  t.ok(customVideo.muted, 'has muted=true property');
+  t.ok(
     customVideo.nativeEl.hasAttribute('muted'),
     'nativeEl has muted attribute'
   );
-  assert(customVideo.nativeEl.muted, 'nativeEl has muted=true property');
+  t.ok(customVideo.nativeEl.muted, 'nativeEl has muted=true property');
 
   let playing;
   customVideo.addEventListener('playing', () => (playing = true));
@@ -113,16 +111,16 @@ it('has a working muted attribute', async function () {
     console.warn(error);
   }
 
-  assert(playing, 'playing event fired');
-  assert(!customVideo.paused, 'paused prop is false');
+  t.ok(playing, 'playing event fired');
+  t.ok(!customVideo.paused, 'paused prop is false');
 });
 
-it('adds and removes tracks and sources', async function () {
+test('adds and removes tracks and sources', async function (t) {
   if (document.readyState === 'loading') {
     await new Promise((resolve) => addEventListener('DOMContentLoaded', resolve));
   }
 
-  const customVideo = window.customVideo;
+  const customVideo = globalThis.customVideo;
 
   customVideo.innerHTML = `
     <track default label="English" kind="captions" srclang="en" src="../en-cc.vtt">
@@ -131,18 +129,18 @@ it('adds and removes tracks and sources', async function () {
 
   await Promise.resolve();
 
-  assert.equal(customVideo.querySelectorAll('track').length, 2);
-  assert.equal(customVideo.textTracks.length, 2);
+  t.equal(customVideo.querySelectorAll('track').length, 2);
+  t.equal(customVideo.textTracks.length, 2);
 
   customVideo.querySelector('track').remove();
 
   await Promise.resolve();
 
-  assert.equal(customVideo.querySelectorAll('track').length, 1);
-  assert.equal(customVideo.textTracks.length, 1);
+  t.equal(customVideo.querySelectorAll('track').length, 1);
+  t.equal(customVideo.textTracks.length, 1);
 });
 
-it('has HTMLVideoElement like properties', async function () {
+test('has HTMLVideoElement like properties', async function (t) {
   const customVideo = await fixture(`<custom-video></custom-video>`);
   const customVideoElementProps = [
     'addEventListener',
@@ -222,14 +220,14 @@ it('has HTMLVideoElement like properties', async function () {
   ];
 
   customVideoElementProps.forEach((prop) => {
-    assert(
+    t.ok(
       prop in customVideo,
       `${prop} exists in an instance of CustomVideoElement`
     );
   });
 });
 
-it('has HTMLVideoElement like events', async function () {
+test('has HTMLVideoElement like events', async function (t) {
   const customVideo = await fixture(`<custom-video></custom-video>`);
   const customVideoElementEvents = [
     'abort',
@@ -265,9 +263,20 @@ it('has HTMLVideoElement like events', async function () {
   ];
 
   customVideoElementEvents.forEach((event) => {
-    assert(
+    t.ok(
       customVideo.constructor.Events.includes(event),
       `${event} exists in CustomVideoElement.Events`
     );
   });
 });
+
+async function fixture(html) {
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  const fragment = template.content.cloneNode(true);
+  const result = fragment.children.length > 1
+    ? [...fragment.children]
+    : fragment.children[0];
+  document.body.append(fragment);
+  return result;
+}
