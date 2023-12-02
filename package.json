@@ -17,15 +17,13 @@
   },
   "scripts": {
     "lint": "npx eslint *.js -c ./node_modules/wet-run/.eslintrc.json",
-    "pretest": "esbuild custom-media-element.js --target=es2019 --bundle --outdir=dist",
-    "test": "web-test-runner --config test/web-test-runner.config.js",
+    "pretest": "esbuild custom-media-element.js --target=es2019 --bundle --outdir=dist --global-name=CustomMediaElement",
+    "test": "wet run test/eager-upgrade.html test/lazy-upgrade.html",
     "dev": "wet serve --redirect :examples/"
   },
   "devDependencies": {
-    "@open-wc/testing": "^3.1.8",
-    "@web/test-runner": "^0.16.1",
-    "esbuild": "^0.17.19",
-    "wet-run": "^0.5.1"
+    "esbuild": "^0.19.8",
+    "wet-run": "^0.8.1"
   },
   "keywords": [
     "custom",
