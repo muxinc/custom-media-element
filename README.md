@@ -2,6 +2,7 @@
 
 [![Version](https://img.shields.io/npm/v/custom-media-element?style=flat-square)](https://www.npmjs.com/package/custom-media-element) 
 [![Badge size](https://img.badgesize.io/https://cdn.jsdelivr.net/npm/custom-media-element/+esm?compression=gzip&label=gzip&style=flat-square)](https://cdn.jsdelivr.net/npm/custom-media-element/+esm)
+[![Codecov](https://img.shields.io/codecov/c/github/muxinc/custom-media-element?style=flat-square)](https://app.codecov.io/gh/muxinc/custom-media-element)
 
 A custom element for extending the native media elements (`<audio>` or `<video>`).
 
