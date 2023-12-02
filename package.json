@@ -18,12 +18,12 @@
   "scripts": {
     "lint": "npx eslint *.js -c ./node_modules/wet-run/.eslintrc.json",
     "pretest": "esbuild custom-media-element.js --target=es2019 --bundle --outdir=dist --global-name=CustomMediaElement",
-    "test": "wet run test/eager-upgrade.html test/lazy-upgrade.html",
+    "test": "wet run test/eager-upgrade.html test/lazy-upgrade.html --coverage",
     "dev": "wet serve --redirect :examples/"
   },
   "devDependencies": {
     "esbuild": "^0.19.8",
-    "wet-run": "^0.8.1"
+    "wet-run": "^0.9.0"
   },
   "keywords": [
     "custom",
