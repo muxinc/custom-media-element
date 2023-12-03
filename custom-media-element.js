@@ -58,9 +58,13 @@ if (audioTemplate) {
         width: 100%;
       }
     </style>
+    <slot name="media"></slot>
     <slot></slot>
   `;
 }
+
+// If the `media` slot is used leave the styling up to the user.
+// It's a more consistent behavior pre and post custom element upgrade.
 
 export const videoTemplate = globalThis.document?.createElement('template');
 
@@ -86,6 +90,7 @@ if (videoTemplate) {
         transition: var(--media-webkit-text-track-transition);
       }
     </style>
+    <slot name="media"></slot>
     <slot></slot>
   `;
 }
@@ -220,6 +225,7 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
     get nativeEl() {
       return this.#nativeEl
         ?? this.shadowRoot.querySelector(tag)
+        ?? this.querySelector(':scope > slot[slot=media]')
         ?? this.querySelector(tag);
     }
 
