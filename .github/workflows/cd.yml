@@ -48,4 +48,4 @@ jobs:
       - uses: fregante/setup-git-user@v1
       - run: npm install
       - run: npm test
-      - run: npx --yes wet-run@0.8.1 release ${{ inputs.version }} --prerelease "${{ inputs.prerelease }}" --provenance --changelog --github-release
+      - run: npx --yes wet-run@0.9.1 release ${{ inputs.version }} --prerelease "${{ inputs.prerelease }}" --provenance --changelog --github-release
