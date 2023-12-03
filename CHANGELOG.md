@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/muxinc/custom-media-element/compare/v1.0.2...v1.1.0) (2023-12-03)
+
+
+### Features
+
+* add slot=media support for progressive ([#10](https://github.com/muxinc/custom-media-element/issues/10)) ([641896f](https://github.com/muxinc/custom-media-element/commit/641896f8506c3016f5e9ccf10191223a8e3e55fd))
+
+
+
 ## [1.0.2](https://github.com/muxinc/custom-media-element/compare/v1.0.1...v1.0.2) (2023-10-29)
 
 
