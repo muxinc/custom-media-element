@@ -1,3 +1,13 @@
+## [1.1.1](https://github.com/muxinc/custom-media-element/compare/v1.1.0...v1.1.1) (2023-12-08)
+
+
+### Bug Fixes
+
+* slotted media querySelector ([#12](https://github.com/muxinc/custom-media-element/issues/12)) ([0c56715](https://github.com/muxinc/custom-media-element/commit/0c56715c596e9a91cddb53ed0cdd72577677d16a))
+* upgrade wet-run ([db4b46e](https://github.com/muxinc/custom-media-element/commit/db4b46e1ba41c78a17c6f52f8c3bba8ba2f2963c))
+
+
+
 # [1.1.0](https://github.com/muxinc/custom-media-element/compare/v1.0.2...v1.1.0) (2023-12-03)
 
 
