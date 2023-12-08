@@ -225,7 +225,7 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
     get nativeEl() {
       return this.#nativeEl
         ?? this.shadowRoot.querySelector(tag)
-        ?? this.querySelector(':scope > slot[slot=media]')
+        ?? this.querySelector(':scope > [slot=media]')
         ?? this.querySelector(tag);
     }
 
@@ -265,7 +265,8 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
       if (!this.nativeEl) {
         const nativeEl = document.createElement(tag, { is });
         nativeEl.part = tag;
-        this.shadowRoot.append(nativeEl);
+        const mediaSlot = this.shadowRoot.querySelector('slot[name="media"]');
+        mediaSlot.append(nativeEl);
       }
 
       // Neither Chrome or Firefox support setting the muted attribute
