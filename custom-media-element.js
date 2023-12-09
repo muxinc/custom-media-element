@@ -338,6 +338,14 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
         return;
       }
 
+      // Ignore setting custom attributes from the child class.
+      // They should not have any effect on the native element, it adds noise in the DOM.
+      if (!CustomMedia.observedAttributes.includes(attrName)
+        && this.constructor.observedAttributes.includes(attrName)
+      ) {
+        return;
+      }
+
       if (newValue === null) {
         this.nativeEl.removeAttribute?.(attrName);
       } else {
