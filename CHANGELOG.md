@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/muxinc/custom-media-element/compare/v1.1.1...v1.1.2) (2023-12-09)
+
+
+### Bug Fixes
+
+* prevent setting child attrs on native el ([#13](https://github.com/muxinc/custom-media-element/issues/13)) ([34dd674](https://github.com/muxinc/custom-media-element/commit/34dd674459259d870975d998e324354a240eea44))
+
+
+
 ## [1.1.1](https://github.com/muxinc/custom-media-element/compare/v1.1.0...v1.1.1) (2023-12-08)
 
 
