@@ -12,6 +12,7 @@ export class CustomAudioElement extends HTMLAudioElement implements HTMLAudioEle
   attributeChangedCallback(attrName: string, oldValue?: string | null, newValue?: string | null): void;
   connectedCallback(): void;
   disconnectedCallback(): void;
+  handleEvent(event: Event): void;
 }
 
 export class CustomVideoElement extends HTMLVideoElement implements HTMLVideoElement {
@@ -22,17 +23,18 @@ export class CustomVideoElement extends HTMLVideoElement implements HTMLVideoEle
   attributeChangedCallback(attrName: string, oldValue?: string | null, newValue?: string | null): void;
   connectedCallback(): void;
   disconnectedCallback(): void;
+  handleEvent(event: Event): void;
 }
 
-type CustomMediaElementConstructor<K> = {
+type CustomMediaElementConstructor<T> = {
   readonly observedAttributes: string[];
   Events: string[];
   template: HTMLTemplateElement;
-  new(): K
+  new(): T
 };
 
-export function CustomMediaMixin(Base: any, options: { tag: 'video', is: string }):
+export function CustomMediaMixin(Base: any, options: { tag: 'video', is?: string }):
   CustomMediaElementConstructor<CustomVideoElement>;
 
-export function CustomMediaMixin(Base: any, options: { tag: 'audio', is: string }):
+export function CustomMediaMixin(Base: any, options: { tag: 'audio', is?: string }):
   CustomMediaElementConstructor<CustomAudioElement>;
