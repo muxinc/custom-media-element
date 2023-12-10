@@ -62,6 +62,7 @@ export class CustomAudioElement extends HTMLAudioElement implements HTMLAudioEle
   attributeChangedCallback(attrName: string, oldValue?: string | null, newValue?: string | null): void;
   connectedCallback(): void;
   disconnectedCallback(): void;
+  handleEvent(event: Event): void;
 }
 
 export class CustomVideoElement extends HTMLVideoElement implements HTMLVideoElement {
@@ -72,19 +73,20 @@ export class CustomVideoElement extends HTMLVideoElement implements HTMLVideoEle
   attributeChangedCallback(attrName: string, oldValue?: string | null, newValue?: string | null): void;
   connectedCallback(): void;
   disconnectedCallback(): void;
+  handleEvent(event: Event): void;
 }
 
-type CustomMediaElementConstructor<K> = {
+type CustomMediaElementConstructor<T> = {
   readonly observedAttributes: string[];
   Events: string[];
   template: HTMLTemplateElement;
-  new(): K
+  new(): T
 };
 
-export function CustomMediaMixin(Base: any, options: { tag: 'video', is: string }):
+export function CustomMediaMixin(superclass: any, options: { tag: 'video', is?: string }):
   CustomMediaElementConstructor<CustomVideoElement>;
 
-export function CustomMediaMixin(Base: any, options: { tag: 'audio', is: string }):
+export function CustomMediaMixin(superclass: any, options: { tag: 'audio', is?: string }):
   CustomMediaElementConstructor<CustomAudioElement>;
 ```
 
@@ -100,6 +102,6 @@ export function CustomMediaMixin(Base: any, options: { tag: 'audio', is: string 
 - [`<wistia-video>`](https://github.com/luwes/wistia-video-element) A custom element for the Wistia player.
 - [`<cloudflare-video>`](https://github.com/luwes/cloudflare-video-element) A custom element for the Cloudflare player.
 - [`<videojs-video>`](https://github.com/luwes/videojs-video-element) A custom element for Video.js.
-- [`castable-video`](https://github.com/muxinc/castable-video) Cast your video element to the big screen with ease!
+- [`<castable-video>`](https://github.com/muxinc/castable-video) Cast your video element to the big screen with ease!
 - [`<mux-player>`](https://github.com/muxinc/elements/tree/main/packages/mux-player) The official Mux-flavored video player custom element.
 - [`<mux-video>`](https://github.com/muxinc/elements/tree/main/packages/mux-video) A Mux-flavored HTML5 video element w/ hls.js and Mux data builtin.

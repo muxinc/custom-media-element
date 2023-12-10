@@ -33,8 +33,8 @@ type CustomMediaElementConstructor<T> = {
   new(): T
 };
 
-export function CustomMediaMixin(Base: any, options: { tag: 'video', is?: string }):
+export function CustomMediaMixin(superclass: any, options: { tag: 'video', is?: string }):
   CustomMediaElementConstructor<CustomVideoElement>;
 
-export function CustomMediaMixin(Base: any, options: { tag: 'audio', is?: string }):
+export function CustomMediaMixin(superclass: any, options: { tag: 'audio', is?: string }):
   CustomMediaElementConstructor<CustomAudioElement>;
