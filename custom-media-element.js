@@ -207,6 +207,7 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
 
     #isInit;
     #nativeEl;
+    #childMap = new Map();
 
     constructor() {
       super();
@@ -260,7 +261,10 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
     #init() {
       if (this.#isInit) return;
       this.#isInit = true;
+      this.init();
+    }
 
+    init() {
       // If there is no nativeEl by now, create it.
       if (!this.nativeEl) {
         const nativeEl = document.createElement(tag, { is });
@@ -278,40 +282,51 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
         this.#upgradeProperty(prop);
       }
 
-      // Keep some native child elements like track and source in sync.
-      const childMap = new Map();
-      // An unnamed <slot> will be filled with all of the custom element's
-      // top-level child nodes that do not have the slot attribute.
-      const slotEl = this.shadowRoot.querySelector('slot:not([name])');
-      slotEl?.addEventListener('slotchange', () => {
-        const removeNativeChildren = new Map(childMap);
-        slotEl
-          .assignedElements()
-          .filter((el) => ['track', 'source'].includes(el.localName))
-          .forEach((el) => {
-            // If the source or track is still in the assigned elements keep it.
-            removeNativeChildren.delete(el);
-            // Re-use clones if possible.
-            let clone = childMap.get(el);
-            if (!clone) {
-              clone = el.cloneNode();
-              childMap.set(el, clone);
-            }
-            this.nativeEl.append?.(clone);
-          });
-        removeNativeChildren.forEach((el) => el.remove());
-      });
+      this.shadowRoot.addEventListener('slotchange', this);
 
-      // The video events are dispatched on the CustomMediaElement instance.
-      // This makes it possible to add event listeners before the element is upgraded.
       for (let type of this.constructor.Events) {
         this.shadowRoot.addEventListener?.(type, this, true);
       }
     }
 
-    handleEvent(evt) {
-      if (evt.target !== this.nativeEl) return;
-      this.dispatchEvent(new CustomEvent(evt.type, { detail: evt.detail }));
+    handleEvent(event) {
+
+      if (event.type === 'slotchange') {
+        this.#syncMediaChildren();
+        return;
+      }
+
+      if (event.target === this.nativeEl) {
+        // The video events are dispatched on the CustomMediaElement instance.
+        // This makes it possible to add event listeners before the element is upgraded.
+        this.dispatchEvent(new CustomEvent(event.type, { detail: event.detail }));
+      }
+    }
+
+    /**
+     * Keep some native child elements like track and source in sync.
+     * An unnamed <slot> will be filled with all of the custom element's
+     * top-level child nodes that do not have the slot attribute.
+     */
+    #syncMediaChildren() {
+      const removeNativeChildren = new Map(this.#childMap);
+
+      this.shadowRoot.querySelector('slot:not([name])')
+        .assignedElements()
+        .filter((el) => ['track', 'source'].includes(el.localName))
+        .forEach((el) => {
+          // If the source or track is still in the assigned elements keep it.
+          removeNativeChildren.delete(el);
+          // Re-use clones if possible.
+          let clone = this.#childMap.get(el);
+          if (!clone) {
+            clone = el.cloneNode();
+            this.#childMap.set(el, clone);
+          }
+          this.nativeEl.append?.(clone);
+        });
+
+      removeNativeChildren.forEach((el) => el.remove());
     }
 
     #upgradeProperty(prop) {

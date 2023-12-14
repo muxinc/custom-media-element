@@ -12,6 +12,7 @@ export class CustomAudioElement extends HTMLAudioElement implements HTMLAudioEle
   attributeChangedCallback(attrName: string, oldValue?: string | null, newValue?: string | null): void;
   connectedCallback(): void;
   disconnectedCallback(): void;
+  init(): void;
   handleEvent(event: Event): void;
 }
 
@@ -23,6 +24,7 @@ export class CustomVideoElement extends HTMLVideoElement implements HTMLVideoEle
   attributeChangedCallback(attrName: string, oldValue?: string | null, newValue?: string | null): void;
   connectedCallback(): void;
   disconnectedCallback(): void;
+  init(): void;
   handleEvent(event: Event): void;
 }
 
