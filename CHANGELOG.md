@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/muxinc/custom-media-element/compare/v1.1.3...v1.2.0) (2023-12-14)
+
+
+### Features
+
+* add more ways to override / hook into  ([#15](https://github.com/muxinc/custom-media-element/issues/15)) ([299277c](https://github.com/muxinc/custom-media-element/commit/299277c4a94b356073e44f0b02838e13d77d208f))
+
+
+
 ## [1.1.3](https://github.com/muxinc/custom-media-element/compare/v1.1.2...v1.1.3) (2023-12-09)
 
 
