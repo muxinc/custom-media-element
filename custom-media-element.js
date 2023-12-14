@@ -260,7 +260,10 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
     #init() {
       if (this.#isInit) return;
       this.#isInit = true;
+      this.init();
+    }
 
+    init() {
       // If there is no nativeEl by now, create it.
       if (!this.nativeEl) {
         const nativeEl = document.createElement(tag, { is });
