@@ -8,7 +8,10 @@
   "files": [
     "custom-media-element.d.ts"
   ],
-  "repository": "muxinc/custom-media-element",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muxinc/custom-media-element.git"
+  },
   "author": "@muxinc",
   "license": "MIT",
   "homepage": "https://github.com/muxinc/custom-media-element#readme",
@@ -18,12 +21,12 @@
   "scripts": {
     "lint": "npx eslint *.js -c ./node_modules/wet-run/.eslintrc.json",
     "pretest": "esbuild custom-media-element.js --target=es2019 --bundle --outdir=dist --global-name=CustomMediaElement",
-    "test": "wet run test/eager-upgrade.html test/lazy-upgrade.html --coverage",
+    "test": "wet test test/eager-upgrade.html test/lazy-upgrade.html --coverage",
     "dev": "wet serve --redirect :examples/ --cors"
   },
   "devDependencies": {
-    "esbuild": "^0.19.8",
-    "wet-run": "^0.9.3"
+    "esbuild": "^0.19.10",
+    "wet-run": "^1.0.1"
   },
   "keywords": [
     "custom",
