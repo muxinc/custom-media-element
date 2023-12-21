@@ -32,11 +32,14 @@ export type CustomMediaElementConstructor<T> = {
   readonly observedAttributes: string[];
   Events: string[];
   template: HTMLTemplateElement;
-  new(): T
+  new(): T;
 };
 
+export type CustomVideoElementConstructor = CustomMediaElementConstructor<CustomVideoElement>;
+export type CustomAudioElementConstructor = CustomMediaElementConstructor<CustomAudioElement>;
+
 export function CustomMediaMixin<T = HTMLElement>(superclass: T, options: { tag: 'video', is?: string }):
-  T & CustomMediaElementConstructor<CustomVideoElement>;
+  T & CustomVideoElementConstructor;
 
 export function CustomMediaMixin<T = HTMLElement>(superclass: T, options: { tag: 'audio', is?: string }):
-  T & CustomMediaElementConstructor<CustomAudioElement>;
+  T & CustomAudioElementConstructor;
