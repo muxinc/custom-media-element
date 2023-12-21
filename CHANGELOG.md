@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/muxinc/custom-media-element/compare/v1.2.1...v1.2.2) (2023-12-21)
+
+
+### Bug Fixes
+
+* add type alias, easier on consumers ([#17](https://github.com/muxinc/custom-media-element/issues/17)) ([076dbfc](https://github.com/muxinc/custom-media-element/commit/076dbfc25aad177d005799b054a8aac8c539df1f))
+
+
+
 ## [1.2.1](https://github.com/muxinc/custom-media-element/compare/v1.2.0...v1.2.1) (2023-12-21)
 
 
