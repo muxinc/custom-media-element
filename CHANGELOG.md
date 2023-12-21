@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/muxinc/custom-media-element/compare/v1.2.0...v1.2.1) (2023-12-21)
+
+
+### Bug Fixes
+
+* upgrade deps + improve types ([#16](https://github.com/muxinc/custom-media-element/issues/16)) ([2ffa12d](https://github.com/muxinc/custom-media-element/commit/2ffa12dd8aa7a096cffc015bdeb6cb00b1cff561))
+
+
+
 # [1.2.0](https://github.com/muxinc/custom-media-element/compare/v1.1.3...v1.2.0) (2023-12-14)
 
 
