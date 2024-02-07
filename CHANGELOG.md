@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/muxinc/custom-media-element/compare/v1.2.2...v1.2.3) (2024-02-07)
+
+
+### Bug Fixes
+
+* enable default chapters & metadata track ([#18](https://github.com/muxinc/custom-media-element/issues/18)) ([a8aaca5](https://github.com/muxinc/custom-media-element/commit/a8aaca52b19f7ba02946fc2c458a03b16e9ed0ca))
+
+
+
 ## [1.2.2](https://github.com/muxinc/custom-media-element/compare/v1.2.1...v1.2.2) (2023-12-21)
 
 
