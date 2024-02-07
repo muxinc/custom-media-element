@@ -324,6 +324,21 @@ export const CustomMediaMixin = (superclass, { tag, is }) => {
             this.#childMap.set(el, clone);
           }
           this.nativeEl.append?.(clone);
+
+          // https://html.spec.whatwg.org/multipage/media.html#sourcing-out-of-band-text-tracks
+          // If there are any text tracks in the media element's list of text
+          // tracks whose text track kind is chapters or metadata that
+          // correspond to track elements with a default attribute set whose
+          // text track mode is set to disabled, then set the text track
+          // mode of all such tracks to hidden.
+          if (
+            clone.localName === 'track' &&
+            clone.default &&
+            (clone.kind === 'chapters' || clone.kind === 'metadata') &&
+            clone.track.mode === 'disabled'
+          ) {
+            clone.track.mode = 'hidden';
+          }
         });
 
       removeNativeChildren.forEach((el) => el.remove());
